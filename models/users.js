@@ -9,13 +9,14 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
-      unique: true, 
+      unique: true,
       match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
     },
     password: {
       type: String,
       required: true,
       minlength: 6,
+      select: false, 
     },
     role: {
       type: String,
@@ -29,9 +30,5 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
-
-const User = mongoose.model("User",userSchema)
-// await User.createIndex({ email: 1 }, { unique: true });
-
-module.exports = User
+const User = mongoose.model("User", userSchema);
+module.exports = User;

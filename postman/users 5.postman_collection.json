@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "4e2653c3-e707-4f3a-80ab-34eb1bd92d08",
+		"name": "users 5",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47010229",
+		"_collection_link": "https://maintenance-cosmonaut-9348959-6773691.postman.co/workspace/Mohamed-Alaa's-Workspace~9c220bfe-86e2-485b-89c8-5d7268a67c19/collection/47010229-4e2653c3-e707-4f3a-80ab-34eb1bd92d08?action=share&source=collection_link&creator=47010229"
+	},
+	"item": [
+		{
+			"name": "createNewUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "mohamedaaa",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "moko2534665@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "14578634",
+							"type": "text"
+						},
+						{
+							"key": "photo",
+							"type": "file",
+							"src": "postman-cloud:///1f06984b-e232-4820-b9f6-b9f5597d7fbe"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:5000/users",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sign up",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\":\"mohamed\",\r\n  \"email\": \"mohamed1236@gmail.com\",\r\n  \"password\": \"12345678\",\r\n  \"confirmPassword\": \"12345678\",\r\n    \"role\":\"admin\"\r\n  }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/users/signup",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2ODg2ZGU5N2RiN2Q3M2EyODhjNmIzNmMiLCJuYW1lIjoiTW9oYW1lZDE0NCIsImlhdCI6MTc1MzY2OTM1NCwiZXhwIjoxNzUzNzU1NzU0fQ.-Q20CkmjRVpOHdqZWSoHu5DcFjbXpMpCiOTA3xu1kuA",
+						"type": "text",
+						"disabled": true
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n \r\n  \"email\": \"mohamed123456@gmail.com\",\r\n  \"password\":\"12345678\",\r\n  \"userId\":\"68873edf37deb4351f012be1\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/users/login",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

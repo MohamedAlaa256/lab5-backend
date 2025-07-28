@@ -19,37 +19,50 @@ const signup = async (req, res) => {
   });
 };
 const login = async (req, res) => {
-  const body = req.body;
-  const user = await User.findOne({ email: body.email });
+  const { email, password, userId } = req.body;
+
+  // Get user with password
+  const user = await User.findOne({ email }).select("+password");
+
   if (!user) {
     throw new AppError("email or password wrong", 400);
   }
-  const isPasswordCorrect = await bcrypt.compare(body.password, user.password);
+
+  if (userId && user._id.toString() !== userId) {
+    throw new AppError("userId does not match the email", 400);
+  }
+
+  const isPasswordCorrect = await bcrypt.compare(password, user.password);
   if (!isPasswordCorrect) {
     throw new AppError("email or password wrong", 400);
   }
 
-  const jwtSecret =
-    "e26ec0d9edbc9a25d7a5e03a321fa9c6b2bb4c5bfab42a11f33fa2d369abc9a6";
+  const jwtSecret = "e26ec0d9edbc9a25d7a5e03a321fa9c6b2bb4c5bfab42a11f33fa2d369abc9a6";
+
   const access_token = await jwtSign(
     { sub: user._id, name: user.name },
     jwtSecret,
     { expiresIn: "1d" }
-  ); 
+  );
 
   res.status(201).json({
     status: "success",
-    data: { access_token },
+    data: {
+      access_token,
+      userId: user._id,
+    },
   });
 };
+
 
 const createUser = async (req, res) => {
   const body = req.body;
   if (req.imageUrls) {
-    body.photo = req.imageUrls[0];  
+    body.photo = req.imageUrls[0];
   }
-  
-  const user = await User.create(body);  
+
+  const user = await User.create(body);
+
   res.status(201).json({
     status: "success",
     message: "User created successfully",
@@ -75,7 +88,9 @@ const getUserById = async (req, res) => {
 const getUserByEmail = async (req, res) => {
   const { email } = req.query;
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ email }).select("password");
+  
+console.log("user from DB:", user);
   if (!user) {
     throw new AppError("User not found", 404);
   }

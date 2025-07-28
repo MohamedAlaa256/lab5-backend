@@ -10,9 +10,11 @@ const auth = async (req, res, next) => {
     if (!token) throw new AppError("No token provided", 401);  
 
     const jwtSecret = process.env.JWT_SECRET;
+    console.log(jwtSecret)
+    console.log(token)
     const payload = await jwtVerify(token, jwtSecret);  
 
-    const user = await User.findById(payload.sub); 
+    const user = await User.findById(payload.sub).select("-password"); 
     if (!user) throw new AppError("User not found", 404);  
 
     req.user = user;  

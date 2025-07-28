@@ -4,12 +4,13 @@ const signupSchema = Joi.object({
     name: Joi.string().required(),
     email: Joi.string().email().required(),
     password: Joi.string().min(6).required(),
-    confirmPassword:Joi.string().required().valid(Joi.ref('password'))
+    confirmPassword:Joi.string().required().valid(Joi.ref('password')),
+      role: Joi.string().valid("admin", "user").optional()  
 });
 const loginSchema= Joi.object({
   email:Joi.string().email().required(),
   password:Joi.string().min(6).required(),
- 
+  userId: Joi.string().optional()
 })
 const createUserSchema = Joi.object({
     name: Joi.string().required(),
