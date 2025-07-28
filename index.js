@@ -35,5 +35,5 @@ mongoose
   .then(() => console.log("Connected to MongoDB Atlas"))
   .catch((err) => console.error("MongoDB connection error:", err));
 
-  modules.exports=app
+  module.exports=app
   
