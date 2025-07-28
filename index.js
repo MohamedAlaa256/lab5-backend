@@ -26,11 +26,14 @@ app.use(errorHandling)
 
 
 
-app.listen(process.env.PORT || 5000, () => {
-  console.log(`Server listening on port ${process.env.PORT || 5000}`);
+// app.listen(process.env.PORT || 5000, () => {
+//   console.log(`Server listening on port ${process.env.PORT || 5000}`);
 
-  mongoose
-    .connect(process.env.MONGO_URI)
-    .then(() => console.log("Connected to MongoDB Atlas"))
-    .catch((err) => console.error("MongoDB connection error:", err));
-});
+// });
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB Atlas"))
+  .catch((err) => console.error("MongoDB connection error:", err));
+
+  modules.exports=app
+  
