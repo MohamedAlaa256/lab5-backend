@@ -1,5 +1,5 @@
 // const express = require("express");
-const AppError = require("../../Lab5/utils/appError");
+const AppError = require("../utils/appError");
 const User = require("../models/users");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
